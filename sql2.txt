@@ -1,0 +1,60 @@
+
+CREATE TABLE scores (
+	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(45) NOT NULL,
+    kor INT(10) DEFAULT 0,
+    eng INT(10) DEFAULT 0,
+    math INT(10) DEFAULT 0,
+	total INT(20) NULL,
+    avg FLOAT(5,2) -- 최대 자리수(소숫점 포함 5), 소수점 이하 2자리
+);
+
+
+SELECT * FROM scores;
+
+SELECT * FROM scores WHERE name LIKE '김%' ORDER BY id ASC;
+
+
+CREATE TABLE board (
+	board_id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    writer VARCHAR(45) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NULL,
+    created_at DATETIME DEFAULT NOW()
+);
+
+SELECT * FROM board;
+
+
+#-------------------------------------------------------------
+
+
+CREATE TABLE user(
+	user_id varchar(30) primary key,
+    user_pw varchar(30) not null,
+    user_name varchar(30),
+    user_email varchar(30),
+    user_address varchar(80)
+);
+
+SELECT * FROM user;
+
+CREATE TABLE my_board(
+	board_id BIGINT(20) AUTO_INCREMENT PRIMARY KEY,
+    writer VARCHAR(50),
+    title VARCHAR(100),
+    content VARCHAR(300),
+    date DATETIME DEFAULT NOW(),
+    hit INT(4) DEFAULT 0
+);
+
+UPDATE my_board SET hit = hit + 1 WHERE board_id=1;
+
+SELECT * FROM my_board;
+
+INSERT INTO my_board
+(writer, title, content)
+VALUES('김철수', 'test2', '안녕하세요');
+
+
+

@@ -1,0 +1,94 @@
+# 데이터베이스 생성 명령 (--, #) 주석임
+# 워크벤치에서 sql문 실행 명령 단축키: ctrl + Enter
+
+create database jsp_practice default character set utf8;
+
+# 관리자 계정명은 root // 비밀번호 mysql
+
+# DB 사용자 계정 생성하는 법  아이디 비밀번호
+create user 'jsp' identified  by 'jsp';
+
+# 사용자에게 권한 부여
+grant all privileges on jsp_practice.* to 'jsp';
+
+# 테이블 생성 명령
+# primary key - 컬럼의 주요키를 뜻하며 중복된 데이터를 방지합니다.
+# not null - 데이터의 null값이 들어오는 것을 방지합니다.
+# varchar(길이[byte]) - 문자열 변수
+
+create table members (
+	id varchar(20) primary key, 
+    pw varchar(20) not null,
+    name varchar(30) not null,
+    email varchar(80)
+);
+
+# 테이블 데이터 확인
+select * from members;
+
+# 데이터 추가
+INSERT INTO
+members (id,pw,name) 
+VALUES ('abc123','1234','홍길동');  # 일부데이터를 넣을 경우 () 필수
+insert into members values ('def456', '4433', '이순신', 'aaa@bbb.com');
+insert into members values ('kkk456', '3456', '김건모', 'aaa@naver.com');
+insert into members values ('ghi789', '6753', '장보고', 'bbb@naver.com');
+insert into members values ('aaa123', '2432', '박찬호', 'ccc@naver.com');
+insert into members values ('bbb456', '7653', '손흥민', 'ddd@naver.com');
+insert into members values ('ccc789', '2398', '기성용', 'eee@naver.com');
+insert into members values ('hhh012', '8547', '이순신', 'fff@naver.com');
+insert into members values ('uuu012', '8547', '이성계', 'fff@naver.com');
+insert into members values ('xxx012', '8547', '이의민', 'fff@naver.com');
+insert into members values ('xyu012', '8547', '이의민', 'fff@naver.com');
+
+# 데이터 수정
+update members set name='신사임당',email='shin012@daum.net' where id='abc123';
+
+# 데이터 삭제
+delete from members where id='def456';
+
+select * from members;
+
+# 데이터 조회
+select id from members;
+select name, email from members;
+
+select email from members where id='abc123';
+select * from members where id='kkk456';
+select id,pw from members where id='aaa123';
+select pw from members where id='bbb456';
+
+# '이'로 시작하는 모든 데이터를 조회
+select * from members where name like '이%';
+select * from members where name like '%민';
+select * from members where name like '%성%';
+select * from members where email like '%@naver.com';
+
+# 검색 데이터 정렬 asc: 오름차순 desc: 내림차순
+select * from members order by name asc;
+select * from members order by id desc;
+select * from members order by name asc, id desc;
+
+select * from members where name like '이%' order by id asc;
+
+# 트랜잭션 처리 (서버 롤백)
+set autocommit=true; # false=0
+select * from members;
+
+insert into members values('가가가','1234','가가가','가가가');
+commit; #commit: 저장
+
+insert into members values('나나나','1234','나나나','나나나');
+insert into members values('다다다','1234','다다다','다다다');
+rollback;
+
+# 테이블 컬럼 수정
+alter table members add address varchar(100);
+select * from members;
+
+alter table members drop column email;
+
+# 테이블 레코드 값 전체 삭제
+truncate table members;
+# 테이블 객체 삭제 (rollback 안됨)
+drop table members;
