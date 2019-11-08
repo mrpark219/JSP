@@ -1,0 +1,6 @@
+#Tomcat publish data
+#Fri Sep 13 20:38:36 KST 2019
+org.eclipse.jst.jee.server\:MyWeb=C\:\\Users\\park0\\Desktop\\Coding\\JSP\\apache-tomcat-9.0.24\\wtpwebapps\\MyWeb
+org.eclipse.jst.jee.server\:JSPBasic=C\:\\Users\\park0\\Desktop\\Coding\\JSP\\apache-tomcat-9.0.24\\wtpwebapps\\JSPBasic
+org.eclipse.jst.jee.server\:jdbc_basic=C\:\\Users\\park0\\Desktop\\Coding\\JSP\\apache-tomcat-9.0.24\\wtpwebapps\\jdbc_basic
+org.eclipse.jst.jee.server\:MVCModel2Basic=C\:\\Users\\park0\\Desktop\\Coding\\JSP\\apache-tomcat-9.0.24\\wtpwebapps\\MVCModel2Basic
